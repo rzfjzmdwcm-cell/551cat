@@ -5,37 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>551CAT Portfolio</title>
 
-  <!-- <script>
-    const password = "1234";
-
-    const userInput = prompt("請輸入密碼");
-
-    if (userInput !== password) {
-      alert("密碼錯誤");
-      window.location.href = "https://google.com";
-    }
-  </script> -->
-
-  <!-- <script>
-    fetch('https://api.countapi.xyz/hit/niar-portfolio/visits')
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById('visitor-count').innerText =
-          `訪客數: ${data.value}`;
-      })
-  </script> -->
-
   <style>
     body {
       margin: 0;
       background: black;
       color: white;
-      font-family: Arial;
+      font-family: Arial, sans-serif;
       text-align: center;
     }
 
+    /* ===== 導覽列 ===== */
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+      font-size: 14px;
+      letter-spacing: 2px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      opacity: 0.6;
+    }
+
+    /* ===== 首頁主視覺 ===== */
+
     .hero {
       height: 100vh;
+
       background-image: url("https://picsum.photos/1200/800");
       background-size: cover;
       background-position: center;
@@ -46,30 +54,88 @@
       align-items: center;
     }
 
-    h1 {
-      font-size: 60px;
+    .hero h1 {
+      font-size: 72px;
       margin: 0;
+      letter-spacing: 8px;
     }
 
-    p {
+    .hero p {
       font-size: 20px;
+      letter-spacing: 4px;
+      margin-top: 10px;
+      opacity: 0.8;
+    }
+
+    /* ===== Gallery ===== */
+
+    .gallery-section {
+      padding: 80px 20px;
+    }
+
+    .gallery-title {
+      font-size: 40px;
+      margin-bottom: 50px;
+      letter-spacing: 4px;
     }
 
     .gallery {
-      padding: 40px;
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-      gap: 20px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+
+      max-width: 900px;
+      margin: auto;
     }
 
     .gallery img {
       width: 100%;
-      border-radius: 10px;
+      aspect-ratio: 1 / 1;
+
+      object-fit: cover;
+
+      border-radius: 20px;
+
+      transition: 0.4s;
+      cursor: pointer;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+      opacity: 0.9;
+    }
+
+    /* ===== Footer ===== */
+
+    footer {
+      padding: 40px;
+      font-size: 14px;
+      opacity: 0.5;
+    }
+
+    /* ===== 手機版 ===== */
+
+    @media (max-width: 768px) {
+
+      .hero h1 {
+        font-size: 48px;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      nav a {
+        margin: 0 10px;
+        font-size: 12px;
+      }
     }
   </style>
 </head>
 
 <body>
+
+  <!-- ===== 導覽列 ===== -->
 
   <nav>
     <a href="index.html">HOME</a>
@@ -78,19 +144,38 @@
     <a href="contact.html">CONTACT</a>
   </nav>
 
+  <!-- ===== Hero ===== -->
+
   <section class="hero">
     <h1>551 CAT</h1>
     <p>OUR FAMILY</p>
-
-    <!-- <h2 id="visitor-count">Loading...</h2> -->
   </section>
 
-  <section class="gallery">
-    <img src="image/dondon/Adondon.png">
-    <img src="image/metii/Ametii.png">
-    <img src="image/medeii/Amedii.png">
-    <img src="image/mumu/Amumu.png">
+  <!-- ===== Gallery ===== -->
+
+  <section class="gallery-section">
+
+    <h2 class="gallery-title">CATS</h2>
+
+    <div class="gallery">
+
+      <img src="image/dondon/Adondon.png" alt="dondon">
+
+      <img src="image/metii/Ametii.png" alt="metii">
+
+      <img src="image/medeii/Amedii.png" alt="medeii">
+
+      <img src="image/mumu/Amumu.png" alt="mumu">
+
+    </div>
+
   </section>
+
+  <!-- ===== Footer ===== -->
+
+  <footer>
+    © 2026 551CAT Portfolio
+  </footer>
 
 </body>
 </html>
