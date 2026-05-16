@@ -72,7 +72,8 @@
 
     .wall {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-auto-flow: dense;
       gap: 18px;
 
       width: min(1200px, calc(100% - 40px));
@@ -92,6 +93,24 @@
       cursor: pointer;
       transition: 0.4s ease;
       box-shadow: 0 0 20px rgba(255,255,255,0.08);
+    }
+
+    .photo:nth-child(1),
+    .photo:nth-child(6) {
+      grid-column: span 2;
+      aspect-ratio: 2 / 1;
+    }
+
+    .photo:nth-child(3),
+    .photo:nth-child(8) {
+      grid-row: span 2;
+      aspect-ratio: 1 / 2;
+    }
+
+    .photo:nth-child(5) {
+      grid-column: span 2;
+      grid-row: span 2;
+      aspect-ratio: 1 / 1;
     }
 
     .photo:hover {
@@ -157,6 +176,23 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
         width: calc(100% - 24px);
+      }
+
+      .photo:nth-child(1),
+      .photo:nth-child(5),
+      .photo:nth-child(6) {
+        grid-column: span 2;
+      }
+
+      .photo:nth-child(3),
+      .photo:nth-child(8) {
+        grid-row: auto;
+        aspect-ratio: 1 / 1.35;
+      }
+
+      .photo:nth-child(5) {
+        grid-row: auto;
+        aspect-ratio: 2 / 1.15;
       }
 
       .photo {
