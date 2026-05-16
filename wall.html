@@ -79,25 +79,35 @@
       margin: 0 auto 110px;
     }
 
-    .wall img {
-      width: 100%;
+    .photo {
       aspect-ratio: 1 / 1;
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-      object-fit: cover;
+      padding: 10px;
       border-radius: 18px;
+      background: rgba(255,255,255,0.06);
 
       cursor: pointer;
       transition: 0.4s ease;
-
       box-shadow: 0 0 20px rgba(255,255,255,0.08);
     }
 
-    .wall img:hover {
+    .photo:hover {
       transform: scale(1.03);
       box-shadow:
         0 0 28px cyan,
         0 0 54px rgba(0,255,255,0.28);
+    }
+
+    .wall img {
+      width: 100%;
+      height: 100%;
+      display: block;
+
+      object-fit: contain;
+      border-radius: 12px;
     }
 
     .lightbox {
@@ -149,8 +159,9 @@
         width: calc(100% - 24px);
       }
 
-      .wall img {
+      .photo {
         border-radius: 14px;
+        padding: 8px;
       }
     }
   </style>
@@ -171,14 +182,30 @@
   </section>
 
   <main class="wall">
-    <img src="image/dondon/Adondon.png" alt="dondon" onclick="openLightbox(this.src)">
-    <img src="image/dondon/Adondon1.png" alt="dondon" onclick="openLightbox(this.src)">
-    <img src="image/medeii/Amedeii.png" alt="medeii" onclick="openLightbox(this.src)">
-    <img src="image/medeii/Amedeii1.png" alt="medeii" onclick="openLightbox(this.src)">
-    <img src="image/metii/Ametii.png" alt="metii" onclick="openLightbox(this.src)">
-    <img src="image/metii/Ametii1.png" alt="metii" onclick="openLightbox(this.src)">
-    <img src="image/mumu/Amumu.png" alt="mumu" onclick="openLightbox(this.src)">
-    <img src="image/mumu/Amumu1.png" alt="mumu" onclick="openLightbox(this.src)">
+    <div class="photo" onclick="openLightbox('image/dondon/Adondon.png')">
+      <img src="image/dondon/Adondon.png" alt="dondon">
+    </div>
+    <div class="photo" onclick="openLightbox('image/dondon/Adondon1.png')">
+      <img src="image/dondon/Adondon1.png" alt="dondon">
+    </div>
+    <div class="photo" onclick="openLightbox('image/medeii/Amedeii.png')">
+      <img src="image/medeii/Amedeii.png" alt="medeii">
+    </div>
+    <div class="photo" onclick="openLightbox('image/medeii/Amedeii1.png')">
+      <img src="image/medeii/Amedeii1.png" alt="medeii">
+    </div>
+    <div class="photo" onclick="openLightbox('image/metii/Ametii.png')">
+      <img src="image/metii/Ametii.png" alt="metii">
+    </div>
+    <div class="photo" onclick="openLightbox('image/metii/Ametii1.png')">
+      <img src="image/metii/Ametii1.png" alt="metii">
+    </div>
+    <div class="photo" onclick="openLightbox('image/mumu/Amumu.png')">
+      <img src="image/mumu/Amumu.png" alt="mumu">
+    </div>
+    <div class="photo" onclick="openLightbox('image/mumu/Amumu1.png')">
+      <img src="image/mumu/Amumu1.png" alt="mumu">
+    </div>
   </main>
 
   <div class="lightbox" id="lightbox" onclick="closeLightbox()">
