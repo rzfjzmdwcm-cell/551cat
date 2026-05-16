@@ -78,7 +78,16 @@
       width: 100%;
       display: block;
       border-radius: 20px;
+      cursor: pointer;
       box-shadow: 0 0 28px rgba(255,255,255,0.12);
+      transition: 0.35s ease;
+    }
+
+    .intro img:hover {
+      transform: scale(1.01);
+      box-shadow:
+        0 0 28px rgba(0,255,255,0.45),
+        0 0 56px rgba(0,255,255,0.18);
     }
 
     .series {
@@ -139,6 +148,7 @@
       display: block;
       object-fit: contain;
       border-radius: 12px;
+      cursor: pointer;
     }
 
     .product-demo img {
@@ -147,6 +157,34 @@
       min-height: 100%;
       display: block;
       object-fit: cover;
+      cursor: pointer;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+
+      padding: 28px;
+      background: rgba(0,0,0,0.9);
+      z-index: 5000;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      width: auto;
+      max-width: 92vw;
+      max-height: 88vh;
+      display: block;
+      object-fit: contain;
+      border-radius: 18px;
+      box-shadow: 0 0 32px rgba(255,255,255,0.14);
     }
 
     .product-info {
@@ -267,7 +305,7 @@
 
   <main>
     <section class="intro">
-      <img src="image/prduct/product_demo.png" alt="糖糖系列商品總介紹">
+      <img src="image/prduct/product_demo.png" alt="糖糖系列商品總介紹" onclick="openLightbox(this.src)">
     </section>
 
     <section class="series">
@@ -276,7 +314,7 @@
       <div class="product-showcase">
         <article class="product-object">
           <div class="product-photo">
-            <img src="image/prduct/keyhole.png" alt="糖糖鑰匙圈">
+            <img src="image/prduct/keyhole.png" alt="糖糖鑰匙圈" onclick="openLightbox(this.src)">
           </div>
           <div class="product-info">
             <h3>糖糖鑰匙圈</h3>
@@ -286,7 +324,7 @@
         </article>
 
         <article class="product-demo">
-          <img src="image/prduct/keyhole_demo.png" alt="糖糖鑰匙圈商品介紹">
+          <img src="image/prduct/keyhole_demo.png" alt="糖糖鑰匙圈商品介紹" onclick="openLightbox(this.src)">
         </article>
       </div>
     </section>
@@ -295,7 +333,7 @@
       <div class="product-showcase">
         <article class="product-object">
           <div class="product-photo">
-            <img src="image/prduct/cup.png" alt="糖糖杯子">
+            <img src="image/prduct/cup.png" alt="糖糖杯子" onclick="openLightbox(this.src)">
           </div>
           <div class="product-info">
             <h3>糖糖杯子</h3>
@@ -305,7 +343,7 @@
         </article>
 
         <article class="product-demo">
-          <img src="image/prduct/cup_demo.png" alt="糖糖杯子商品介紹">
+          <img src="image/prduct/cup_demo.png" alt="糖糖杯子商品介紹" onclick="openLightbox(this.src)">
         </article>
       </div>
     </section>
@@ -319,6 +357,21 @@
   <footer>
     © 2026 551CAT Portfolio
   </footer>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" alt="">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById("lightbox").classList.add("active");
+      document.getElementById("lightbox-img").src = src;
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").classList.remove("active");
+    }
+  </script>
 
 </body>
 
