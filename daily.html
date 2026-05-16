@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="551 CAT 的日常生活紀錄與照片分享。" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://rainzhu.github.io/daily.html" />
+
+  <title>551CAT Daily</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#0d0d0d;
+      color:white;
+
+      font-family:
+      "Helvetica Neue",
+      Arial,
+      sans-serif;
+
+      overflow-x:hidden;
+    }
+
+    /* ===== nav ===== */
+
+    nav{
+      position:fixed;
+      top:0;
+      width:100%;
+
+      display:flex;
+      justify-content:center;
+      gap:40px;
+
+      padding:22px;
+
+      background:rgba(0,0,0,0.45);
+      backdrop-filter:blur(14px);
+
+      z-index:999;
+    }
+
+    nav a{
+      color:#d0d0d0;
+      text-decoration:none;
+
+      font-size:14px;
+      letter-spacing:2px;
+
+      transition:.3s;
+    }
+
+    nav a:hover{
+      color:cyan;
+      text-shadow:0 0 10px cyan;
+    }
+
+    nav a.active{
+      color:cyan;
+      text-shadow:0 0 10px cyan;
+    }
+
+    /* ===== hero ===== */
+
+    .hero{
+      padding-top:180px;
+      padding-bottom:140px;
+
+      width:90%;
+      max-width:1200px;
+
+      margin:auto;
+    }
+
+    .hero h1{
+      font-size:78px;
+      font-weight:600;
+
+      margin-bottom:25px;
+
+      letter-spacing:4px;
+    }
+
+    .hero p{
+      color:#9f9f9f;
+
+      line-height:2;
+      font-size:18px;
+    }
+
+    /* ===== blog ===== */
+
+    .blog{
+      width:100%;
+
+      display:flex;
+      flex-direction:column;
+
+      gap:220px;
+
+      padding-bottom:180px;
+    }
+
+    /* ===== post ===== */
+
+    .post{
+
+      width:90%;
+      max-width:1450px;
+
+      margin:auto;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      gap:80px;
+    }
+
+    /* 偶數篇反轉 */
+
+    .post:nth-child(even){
+      flex-direction:row-reverse;
+    }
+
+    /* ===== slider ===== */
+
+    .slider{
+      width:58%;
+      position:relative;
+    }
+
+    .slides{
+
+      display:flex;
+
+      overflow-x:auto;
+
+      scroll-snap-type:x mandatory;
+
+      scroll-behavior:smooth;
+
+      border-radius:30px;
+
+      scrollbar-width:none;
+    }
+
+    .slides::-webkit-scrollbar{
+      display:none;
+    }
+
+    .slides img{
+
+      width:100%;
+      max-height:760px;
+      flex-shrink:0;
+
+      scroll-snap-align:center;
+
+      border-radius:30px;
+
+      object-fit:contain;
+
+      cursor:pointer;
+
+      transition:.4s ease;
+    }
+
+    .slides img:hover{
+      transform:scale(1.01);
+    }
+
+    /* ===== buttons ===== */
+
+    .btn{
+
+      position:absolute;
+      top:50%;
+
+      transform:translateY(-50%);
+
+      width:48px;
+      height:48px;
+
+      border:none;
+      border-radius:50%;
+
+      background:rgba(0,0,0,0.45);
+
+      backdrop-filter:blur(10px);
+
+      color:white;
+
+      font-size:22px;
+
+      cursor:pointer;
+
+      z-index:10;
+
+      transition:.3s;
+    }
+
+    .btn:hover{
+      background:rgba(255,255,255,0.15);
+    }
+
+    .prev{
+      left:16px;
+    }
+
+    .next{
+      right:16px;
+    }
+
+    /* ===== text ===== */
+
+    .post-content{
+      width:34%;
+    }
+
+    .post-date{
+      color:#666;
+
+      font-size:13px;
+      letter-spacing:3px;
+
+      margin-bottom:18px;
+    }
+
+    .post-content h2{
+      font-size:52px;
+      font-weight:500;
+
+      margin-bottom:30px;
+    }
+
+    .post-content p{
+      color:#b8b8b8;
+
+      line-height:2.2;
+
+      font-size:17px;
+    }
+
+    /* ===== tags ===== */
+
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+
+      gap:10px;
+
+      margin-top:30px;
+    }
+
+    .tags span{
+
+      background:#1a1a1a;
+
+      padding:9px 16px;
+
+      border-radius:999px;
+
+      font-size:13px;
+
+      color:#999;
+    }
+
+    /* ===== lightbox ===== */
+
+    .lightbox{
+
+      position:fixed;
+
+      top:0;
+      left:0;
+
+      width:100%;
+      height:100%;
+
+      background:rgba(0,0,0,0.92);
+
+      display:none;
+
+      justify-content:center;
+      align-items:center;
+
+      z-index:5000;
+
+      padding:30px;
+    }
+
+    .lightbox.active{
+      display:flex;
+    }
+
+    .lightbox img{
+
+      width:100%;
+      max-width:1200px;
+
+      border-radius:22px;
+    }
+
+    /* ===== footer ===== */
+
+    footer{
+
+      text-align:center;
+
+      padding:60px 20px;
+
+      color:#666;
+
+      font-size:13px;
+
+      letter-spacing:2px;
+    }
+
+    /* ===== mobile ===== */
+
+    @media(max-width:1000px){
+
+      nav{
+        gap:22px;
+      }
+
+      .hero{
+        padding-top:140px;
+      }
+
+      .hero h1{
+        font-size:52px;
+      }
+
+      .hero p{
+        font-size:16px;
+      }
+
+      .post,
+      .post:nth-child(even){
+
+        flex-direction:column;
+      }
+
+      .slider{
+        width:100%;
+      }
+
+      .slides img{
+        max-height:70vh;
+      }
+
+      .post-content{
+        width:100%;
+      }
+
+      .post-content h2{
+        font-size:36px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== nav ===== -->
+
+  <nav>
+
+    <a href="index.html">HOME</a>
+    <a href="wall.html">WALL</a>
+    <a href="product.html">PRODUCT</a>
+    <a href="daily.html" class="active">DAILY</a>
+    <a href="about.html">ABOUT</a>
+    <a href="contact.html">CONTACT</a>
+
+  </nav>
+
+  <!-- ===== hero ===== -->
+
+  <section class="hero">
+
+    <h1>551 CAT Daily</h1>
+
+    <p>
+      記錄一些普通日子。<br>
+      新的一天放在最上方，慢慢收集生活裡的小片段。
+    </p>
+
+  </section>
+
+  <!-- ===== blog ===== -->
+
+  <section class="blog">
+
+    <section class="post">
+
+      <!-- slider -->
+
+      <div class="slider">
+
+        <button class="btn prev"
+          onclick="slide(this,-1)">
+          ‹
+        </button>
+
+        <div class="slides">
+
+          <img
+            src="image/daily/5_16.jpg"
+            onclick="openLightbox(this.src)"
+            alt="5月16日的日常照片"
+          >
+
+        </div>
+
+        <button class="btn next"
+          onclick="slide(this,1)">
+          ›
+        </button>
+
+      </div>
+
+      <!-- text -->
+
+      <div class="post-content">
+
+        <div class="post-date">
+          2026 / 05 / 16
+        </div>
+
+        <h2>午後小日子</h2>
+
+        <p>
+          今天把日常裡可愛的一角留下來。<br>
+          沒有特別安排，也剛好因此顯得很自然。<br><br>
+          這種普通的瞬間，之後回頭看應該會很喜歡。
+        </p>
+
+        <div class="tags">
+
+          <span>#daily</span>
+          <span>#551cat</span>
+          <span>#memory</span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="post">
+
+      <div class="slider">
+
+        <button class="btn prev"
+          onclick="slide(this,-1)">
+          ‹
+        </button>
+
+        <div class="slides">
+
+          <img
+            src="image/daily/5_15.jpg"
+            onclick="openLightbox(this.src)"
+            alt="5月15日的日常照片"
+          >
+
+        </div>
+
+        <button class="btn next"
+          onclick="slide(this,1)">
+          ›
+        </button>
+
+      </div>
+
+      <div class="post-content">
+
+        <div class="post-date">
+          2026 / 05 / 15
+        </div>
+
+        <h2>五月的第一格</h2>
+
+        <p>
+          從今天開始留下一點生活紀錄。<br>
+          照片不用太正式，只要是真的發生過就很好。<br><br>
+          把平凡收起來，日後就會變成小小的故事。
+        </p>
+
+        <div class="tags">
+
+          <span>#daily</span>
+          <span>#photo</span>
+          <span>#catlife</span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </section>
+
+  <!-- ===== lightbox ===== -->
+
+  <div
+    class="lightbox"
+    id="lightbox"
+    onclick="closeLightbox()"
+  >
+
+    <img id="lightbox-img">
+
+  </div>
+
+  <!-- ===== footer ===== -->
+
+  <footer>
+    NORMAL DAYS ARCHIVE
+  </footer>
+
+  <!-- ===== script ===== -->
+
+  <script>
+
+    /* ===== lightbox ===== */
+
+    function openLightbox(src){
+
+      document
+      .getElementById("lightbox")
+      .classList
+      .add("active");
+
+      document
+      .getElementById("lightbox-img")
+      .src = src;
+
+    }
+
+    function closeLightbox(){
+
+      document
+      .getElementById("lightbox")
+      .classList
+      .remove("active");
+
+    }
+
+    /* ===== slider ===== */
+
+    function slide(button,direction){
+
+      const slider =
+      button.parentElement.querySelector(".slides");
+
+      const width =
+      slider.clientWidth;
+
+      slider.scrollBy({
+
+        left: width * direction,
+
+        behavior:"smooth"
+
+      });
+
+    }
+
+  </script>
+
+</body>
+
+</html>
