@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Wall</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000;
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+
+      padding: 22px;
+
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(12px);
+
+      z-index: 999;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      letter-spacing: 2px;
+
+      transition: 0.3s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: cyan;
+      text-shadow: 0 0 10px cyan;
+    }
+
+    .hero {
+      padding: 150px 20px 70px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 72px;
+      margin-bottom: 18px;
+      letter-spacing: 5px;
+    }
+
+    .hero p {
+      color: #aaa;
+      font-size: 18px;
+      letter-spacing: 2px;
+    }
+
+    .wall {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+
+      width: min(1200px, calc(100% - 40px));
+      margin: 0 auto 110px;
+    }
+
+    .wall img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      display: block;
+
+      object-fit: cover;
+      border-radius: 18px;
+
+      cursor: pointer;
+      transition: 0.4s ease;
+
+      box-shadow: 0 0 20px rgba(255,255,255,0.08);
+    }
+
+    .wall img:hover {
+      transform: scale(1.03);
+      box-shadow:
+        0 0 28px cyan,
+        0 0 54px rgba(0,255,255,0.28);
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+
+      display: none;
+      justify-content: center;
+      align-items: center;
+
+      padding: 28px;
+      background: rgba(0,0,0,0.9);
+      z-index: 5000;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      width: auto;
+      max-width: 92vw;
+      max-height: 88vh;
+      border-radius: 18px;
+      object-fit: contain;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        gap: 18px;
+        padding: 18px 10px;
+      }
+
+      nav a {
+        font-size: 12px;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .wall {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        width: calc(100% - 24px);
+      }
+
+      .wall img {
+        border-radius: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="index.html">HOME</a>
+    <a href="wall.html" class="active">WALL</a>
+    <a href="about.html">ABOUT</a>
+  </nav>
+
+  <section class="hero">
+    <h1>WALL</h1>
+    <p>All photos from 551 CAT</p>
+  </section>
+
+  <main class="wall">
+    <img src="image/dondon/Adondon.png" alt="dondon" onclick="openLightbox(this.src)">
+    <img src="image/dondon/Adondon1.png" alt="dondon" onclick="openLightbox(this.src)">
+    <img src="image/medeii/Amedeii.png" alt="medeii" onclick="openLightbox(this.src)">
+    <img src="image/medeii/Amedeii1.png" alt="medeii" onclick="openLightbox(this.src)">
+    <img src="image/metii/Ametii.png" alt="metii" onclick="openLightbox(this.src)">
+    <img src="image/metii/Ametii1.png" alt="metii" onclick="openLightbox(this.src)">
+    <img src="image/mumu/Amumu.png" alt="mumu" onclick="openLightbox(this.src)">
+    <img src="image/mumu/Amumu1.png" alt="mumu" onclick="openLightbox(this.src)">
+  </main>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" alt="">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById("lightbox").classList.add("active");
+      document.getElementById("lightbox-img").src = src;
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").classList.remove("active");
+    }
+  </script>
+
+</body>
+
+</html>
